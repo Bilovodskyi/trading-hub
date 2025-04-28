@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useRef } from "react";
+import React, { useEffect, useRef } from "react";
 import { IoLogoApple, IoLogoAmazon, IoLogoGoogle } from "react-icons/io5";
 
 import gsap from "gsap";
@@ -9,6 +9,10 @@ import { useGSAP } from "@gsap/react";
 import { RiNetflixFill, RiMetaFill } from "react-icons/ri";
 import { CgChevronDoubleDown } from "react-icons/cg";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import { fadeInWords } from "@/lib/data";
+import Image from "next/image";
+import { useViewportHeight } from "@/hooks/useViewPortHeight";
+import { BiLinkExternal } from "react-icons/bi";
 
 gsap.registerPlugin(useGSAP, ScrollTrigger);
 
@@ -32,6 +36,16 @@ export default function StartPage() {
     const elSixSecondSceneRef = useRef<HTMLDivElement | null>(null);
     const elSevenSecondSceneRef = useRef<HTMLDivElement | null>(null);
 
+    const thirdSceneRef = useRef<HTMLDivElement | null>(null);
+
+    const textThirdScene = useRef<HTMLDivElement | null>(null);
+    const elOneThirdSceneRef = useRef<HTMLDivElement | null>(null);
+    const elTwoThirdSceneRef = useRef<HTMLDivElement | null>(null);
+    const elThreeThirdSceneRef = useRef<HTMLDivElement | null>(null);
+
+    const lastSceneRef = useRef<HTMLDivElement | null>(null);
+
+    const viewportHeight = useViewportHeight();
     useGSAP(() => {
         if (
             !mainTitleRef.current ||
@@ -50,7 +64,13 @@ export default function StartPage() {
             !elFourSecondSceneRef.current ||
             !elFiveSecondSceneRef.current ||
             !elSixSecondSceneRef.current ||
-            !elSevenSecondSceneRef.current
+            !elSevenSecondSceneRef.current ||
+            !elOneThirdSceneRef.current ||
+            !elTwoThirdSceneRef.current ||
+            !elThreeThirdSceneRef.current ||
+            !thirdSceneRef.current ||
+            !textThirdScene.current ||
+            !lastSceneRef.current
         )
             return;
         const initialTimeline = gsap.timeline({
@@ -106,7 +126,28 @@ export default function StartPage() {
             scrollTrigger: {
                 trigger: "#section-four",
                 start: "top bottom",
+                end: "+=250px",
+                scrub: true,
+            },
+            defaults: {
+                ease: "power4.out",
+            },
+        });
+
+        const seventhAnimationTimeline = gsap.timeline({
+            scrollTrigger: {
+                trigger: "#section-four",
+                start: "top bottom-=250",
                 end: "bottom top",
+                scrub: true,
+            },
+        });
+
+        const lastAnimationTimeline = gsap.timeline({
+            scrollTrigger: {
+                trigger: "#section-six",
+                start: "top bottom",
+                end: () => `+=${viewportHeight}`,
                 scrub: true,
             },
         });
@@ -127,6 +168,12 @@ export default function StartPage() {
             elFiveSecondSceneRef.current,
             elSixSecondSceneRef.current,
             elSevenSecondSceneRef.current,
+        ];
+
+        const thirdSceneElements = [
+            elOneThirdSceneRef.current,
+            elTwoThirdSceneRef.current,
+            elThreeThirdSceneRef.current,
         ];
 
         const fadeOut = [mainTitleRef.current, scrollToBottomButtonRef.current];
@@ -258,14 +305,70 @@ export default function StartPage() {
                 1
             );
 
-        sixthAnimationTimeline.to(
+        sixthAnimationTimeline.from(
             secondSceneElements,
             {
-                opacity: 1,
-                stagger: 0.02,
+                opacity: 0,
+                stagger: 0.5,
+                x: 50,
             },
             0
         );
+
+        seventhAnimationTimeline
+            .from(
+                thirdSceneElements,
+                {
+                    stagger: 0.04,
+                    duration: 2,
+                    x: "-=4000",
+                },
+                0
+            )
+            .to(
+                thirdSceneRef.current,
+                {
+                    delay: 0.5,
+                    backgroundColor: "var(--background)",
+                },
+                0
+            )
+            .from(
+                textThirdScene.current.children,
+                {
+                    delay: 0.85,
+                    stagger: 0.1,
+                    opacity: 0,
+                },
+                0
+            )
+            .to(
+                textThirdScene.current.children,
+                {
+                    delay: 1.5,
+                    stagger: 0.1,
+                    backgroundColor: "transparent",
+                    color: "white",
+                },
+                0
+            );
+
+        lastAnimationTimeline
+            .from(
+                lastSceneRef.current,
+                {
+                    y: viewportHeight,
+                    scaleX: 0.7,
+                },
+                0
+            )
+            .to(
+                lastSceneRef.current,
+                {
+                    display: "block",
+                },
+                0
+            );
     });
     return (
         <>
@@ -304,13 +407,13 @@ export default function StartPage() {
                         className="h-full aspect-square flex-none bg-[#478bff] rounded-full flex-center border border-background">
                         <p
                             ref={elThreeSecondSceneRef}
-                            className="absolute -left-[660px] text-black font-poppins !text-[5rem] whitespace-nowrap opacity-0">
+                            className="absolute -left-[660px] text-black font-poppins !text-[5rem] whitespace-nowrap">
                             Your AI Trading
                         </p>
                         <RiMetaFill className="absolute inset-0 m-auto w-3/5 h-3/5 text-background" />
                         <p
                             ref={elOneSecondSceneRef}
-                            className="absolute -right-[180px] text-black font-poppins !text-[5rem] opacity-0">
+                            className="absolute -right-[180px] text-black font-poppins !text-[5rem]">
                             Hub
                         </p>
                     </div>
@@ -319,13 +422,13 @@ export default function StartPage() {
                         className="h-full aspect-square flex-none bg-[#ffc412] rounded-[10%] flex-center border border-background">
                         <p
                             ref={elTwoSecondSceneRef}
-                            className="absolute -left-[124px] text-black font-poppins !text-[5rem] whitespace-nowrap opacity-0">
+                            className="absolute -left-[124px] text-black font-poppins !text-[5rem] whitespace-nowrap">
                             All
                         </p>
                         <IoLogoApple className="absolute inset-0 m-auto w-3/5 h-3/5 text-background" />
                         <p
                             ref={elFourSecondSceneRef}
-                            className="absolute -right-[580px] text-black font-poppins !text-[5rem] whitespace-nowrap opacity-0">
+                            className="absolute -right-[580px] text-black font-poppins !text-[5rem] whitespace-nowrap">
                             Trading Tools
                         </p>
                     </div>
@@ -342,7 +445,7 @@ export default function StartPage() {
                         </svg>
                         <p
                             ref={elSevenSecondSceneRef}
-                            className="absolute -left-[434px] -top-6 text-black font-poppins !text-[5rem] whitespace-nowrap opacity-0">
+                            className="absolute -left-[434px] -top-6 text-black font-poppins !text-[5rem] whitespace-nowrap">
                             You Might
                         </p>
                         <div className="absolute inset-0 flex items-center justify-center mr-[15%]">
@@ -350,7 +453,7 @@ export default function StartPage() {
                         </div>
                         <p
                             ref={elFiveSecondSceneRef}
-                            className="absolute -right-[524px] -top-6 text-black font-poppins !text-[5rem] whitespace-nowrap opacity-0">
+                            className="absolute -right-[524px] -top-6 text-black font-poppins !text-[5rem] whitespace-nowrap">
                             Need To Win
                         </p>
                     </div>
@@ -360,7 +463,7 @@ export default function StartPage() {
                         className="h-full aspect-square flex-none bg-[#7a78ff] rounded-[10%] flex-center border border-background">
                         <p
                             ref={elSixSecondSceneRef}
-                            className="absolute -left-[646px] text-black font-poppins !text-[5rem] whitespace-nowrap opacity-0">
+                            className="absolute -left-[646px] text-black font-poppins !text-[5rem] whitespace-nowrap">
                             You Next Trade
                         </p>
 
@@ -372,11 +475,83 @@ export default function StartPage() {
                         <IoLogoGoogle className="absolute inset-0 m-auto w-3/5 h-3/5 text-background" />
                     </div>
                 </div>
+                <div ref={thirdSceneRef} className="fixed inset-0">
+                    <div
+                        ref={elOneThirdSceneRef}
+                        className="w-[2000px] h-1/3 bg-[#ff6d38] border border-background rounded-3xl translate-x-[2000px]"></div>
+                    <div
+                        ref={elThreeThirdSceneRef}
+                        className="w-[2000px] h-1/3 bg-[#7a78ff] border border-background rounded-3xl translate-x-[2000px]"></div>
+                    <div
+                        ref={elTwoThirdSceneRef}
+                        className="w-[2000px] h-1/3 bg-[#ffc412] border border-background rounded-3xl translate-x-[2000px]"></div>
+                    <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-1/3">
+                        <p
+                            ref={textThirdScene}
+                            className="text-white !text-[2rem] font-poppins flex gap-2 flex-wrap">
+                            <Image
+                                src="/logo.png"
+                                alt="logo"
+                                width={20}
+                                height={20}
+                                className="w-[40px] h-[40px]"
+                            />
+                            {fadeInWords.map((word, i) => (
+                                <span
+                                    key={i}
+                                    className="bg-neutral-700 rounded-full text-transparent">
+                                    {word}
+                                </span>
+                            ))}
+                        </p>
+                    </div>
+                    <div
+                        ref={lastSceneRef}
+                        className="absolute inset-0 bg-[#00a652] w-full h-screen rounded-3xl hidden">
+                        <div className="h-full flex flex-col justify-center px-24 gap-2">
+                            <div className="bg-[#7a78ff] w-[300px] rounded-xl p-4 border border-black text-black leading-4 flex justify-between">
+                                <div>
+                                    <h1>Trade Journal</h1>
+                                    <h2 className="text-neutral-700 text-[.75rem]">
+                                        tradejournal.one
+                                    </h2>
+                                </div>
+                                <div className="rounded-full bg-black w-[34px] h-[34px] flex-center">
+                                    <BiLinkExternal className="text-white" />
+                                </div>
+                            </div>
+                            <div className="bg-[#ff6d38] w-[300px] rounded-xl p-4 border border-black text-black leading-4 flex justify-between">
+                                <div>
+                                    <h1>AI Investor</h1>
+                                    <h2 className="text-neutral-700 text-[.75rem]">
+                                        investsquid.com
+                                    </h2>
+                                </div>
+                                <div className="rounded-full bg-black w-[34px] h-[34px] flex-center">
+                                    <BiLinkExternal className="text-white" />
+                                </div>
+                            </div>
+                            <div className="bg-[#ffc412] w-[300px] rounded-xl p-4 border border-black text-black leading-4 flex justify-between">
+                                <div>
+                                    <h1>AI Trader</h1>
+                                    <h2 className="text-neutral-700 text-[.75rem]">
+                                        Coming soon
+                                    </h2>
+                                </div>
+                                <div className="rounded-full bg-black w-[34px] h-[34px] flex-center">
+                                    <BiLinkExternal className="text-white" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </section>
             <section id="section-one" className="h-screen "></section>
             <section id="section-two" className="h-screen "></section>
             <section id="section-three" className="h-screen "></section>
-            <section id="section-four" className="h-screen "></section>
+            <section id="section-four" className="h-screen"></section>
+            <section id="section-five" className="h-screen"></section>
+            <section id="section-six" className="h-screen"></section>
         </>
     );
 }
