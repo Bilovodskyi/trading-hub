@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useEffect, useRef } from "react";
+import React, { useRef } from "react";
 import { IoLogoApple, IoLogoAmazon, IoLogoGoogle } from "react-icons/io5";
 
 import gsap from "gsap";
@@ -402,33 +402,29 @@ export default function StartPage() {
                 <div
                     ref={cardsContainerRef}
                     className="h-1/3 flex px-4 py-2 justify-center w-full gap-2">
-                    <div
-                        ref={stockCardOneRef}
-                        className="h-full aspect-square flex-none bg-[#478bff] rounded-full flex-center border border-background">
+                    <div ref={stockCardOneRef} className="stock-card bg-blue">
                         <p
                             ref={elThreeSecondSceneRef}
-                            className="absolute -left-[660px] text-black font-poppins !text-[5rem] whitespace-nowrap">
+                            className="second-scene-text -left-[660px] ">
                             Your AI Trading
                         </p>
                         <RiMetaFill className="absolute inset-0 m-auto w-3/5 h-3/5 text-background" />
                         <p
                             ref={elOneSecondSceneRef}
-                            className="absolute -right-[180px] text-black font-poppins !text-[5rem]">
+                            className="second-scene-text -right-[180px]">
                             Hub
                         </p>
                     </div>
-                    <div
-                        ref={stockCardTwoRef}
-                        className="h-full aspect-square flex-none bg-[#ffc412] rounded-[10%] flex-center border border-background">
+                    <div ref={stockCardTwoRef} className="stock-card bg-yellow">
                         <p
                             ref={elTwoSecondSceneRef}
-                            className="absolute -left-[124px] text-black font-poppins !text-[5rem] whitespace-nowrap">
+                            className="second-scene-text -left-[124px]">
                             All
                         </p>
                         <IoLogoApple className="absolute inset-0 m-auto w-3/5 h-3/5 text-background" />
                         <p
                             ref={elFourSecondSceneRef}
-                            className="absolute -right-[580px] text-black font-poppins !text-[5rem] whitespace-nowrap">
+                            className="second-scene-text -right-[580px]">
                             Trading Tools
                         </p>
                     </div>
@@ -445,7 +441,7 @@ export default function StartPage() {
                         </svg>
                         <p
                             ref={elSevenSecondSceneRef}
-                            className="absolute -left-[434px] -top-6 text-black font-poppins !text-[5rem] whitespace-nowrap">
+                            className="second-scene-text -left-[434px] -top-6">
                             You Might
                         </p>
                         <div className="absolute inset-0 flex items-center justify-center mr-[15%]">
@@ -453,17 +449,17 @@ export default function StartPage() {
                         </div>
                         <p
                             ref={elFiveSecondSceneRef}
-                            className="absolute -right-[524px] -top-6 text-black font-poppins !text-[5rem] whitespace-nowrap">
+                            className="second-scene-text -right-[524px] -top-6">
                             Need To Win
                         </p>
                     </div>
 
                     <div
                         ref={stockCardFourRef}
-                        className="h-full aspect-square flex-none bg-[#7a78ff] rounded-[10%] flex-center border border-background">
+                        className="stock-card bg-purple">
                         <p
                             ref={elSixSecondSceneRef}
-                            className="absolute -left-[646px] text-black font-poppins !text-[5rem] whitespace-nowrap">
+                            className="second-scene-text -left-[646px]">
                             You Next Trade
                         </p>
 
@@ -471,20 +467,20 @@ export default function StartPage() {
                     </div>
                     <div
                         ref={stockCardFiveRef}
-                        className="h-full aspect-square flex-none bg-[#ff6d38] rounded-full flex-center border border-background">
+                        className="stock-card bg-orange">
                         <IoLogoGoogle className="absolute inset-0 m-auto w-3/5 h-3/5 text-background" />
                     </div>
                 </div>
                 <div ref={thirdSceneRef} className="fixed inset-0">
                     <div
                         ref={elOneThirdSceneRef}
-                        className="w-[2000px] h-1/3 bg-[#ff6d38] border border-background rounded-3xl translate-x-[2000px]"></div>
+                        className="w-[2000px] h-1/3 bg-orange border border-background rounded-3xl translate-x-[2000px]"></div>
                     <div
                         ref={elThreeThirdSceneRef}
-                        className="w-[2000px] h-1/3 bg-[#7a78ff] border border-background rounded-3xl translate-x-[2000px]"></div>
+                        className="w-[2000px] h-1/3 bg-purple border border-background rounded-3xl translate-x-[2000px]"></div>
                     <div
                         ref={elTwoThirdSceneRef}
-                        className="w-[2000px] h-1/3 bg-[#ffc412] border border-background rounded-3xl translate-x-[2000px]"></div>
+                        className="w-[2000px] h-1/3 bg-yellow border border-background rounded-3xl translate-x-[2000px]"></div>
                     <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-1/3">
                         <p
                             ref={textThirdScene}
@@ -507,9 +503,9 @@ export default function StartPage() {
                     </div>
                     <div
                         ref={lastSceneRef}
-                        className="absolute inset-0 bg-[#00a652] w-full h-screen rounded-3xl hidden">
+                        className="absolute inset-0 bg-green w-full h-screen rounded-3xl hidden">
                         <div className="h-full flex flex-col justify-center px-24 gap-2">
-                            <div className="bg-[#7a78ff] w-[300px] rounded-xl p-4 border border-black text-black leading-4 flex justify-between">
+                            <div className="bg-purple w-[300px] rounded-xl p-4 border border-black text-black leading-4 flex justify-between">
                                 <div>
                                     <h1>Trade Journal</h1>
                                     <h2 className="text-neutral-700 text-[.75rem]">
@@ -520,7 +516,7 @@ export default function StartPage() {
                                     <BiLinkExternal className="text-white" />
                                 </div>
                             </div>
-                            <div className="bg-[#ff6d38] w-[300px] rounded-xl p-4 border border-black text-black leading-4 flex justify-between">
+                            <div className="bg-orange w-[300px] rounded-xl p-4 border border-black text-black leading-4 flex justify-between">
                                 <div>
                                     <h1>AI Investor</h1>
                                     <h2 className="text-neutral-700 text-[.75rem]">
@@ -531,7 +527,7 @@ export default function StartPage() {
                                     <BiLinkExternal className="text-white" />
                                 </div>
                             </div>
-                            <div className="bg-[#ffc412] w-[300px] rounded-xl p-4 border border-black text-black leading-4 flex justify-between">
+                            <div className="bg-yellow w-[300px] rounded-xl p-4 border border-black text-black leading-4 flex justify-between">
                                 <div>
                                     <h1>AI Trader</h1>
                                     <h2 className="text-neutral-700 text-[.75rem]">

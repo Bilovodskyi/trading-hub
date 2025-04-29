@@ -3,20 +3,30 @@
 :root {
     --background: #141414;
     --foreground: rgb(253, 249, 240);
+    --blue: #478bff;
+    --yellow: #ffc412;
+    --purple: #7a78ff;
+    --orange: #ff6d38;
+    --green: #00a652;
 }
 
 @theme inline {
     --color-background: var(--background);
     --color-foreground: var(--foreground);
     --font-poppins: var(--poppins);
+    --color-blue: var(--blue);
+    --color-yellow: var(--yellow);
+    --color-purple: var(--purple);
+    --color-orange: var(--orange);
+    --color-green: var(--green);
 }
 
-@media (prefers-color-scheme: dark) {
+/* @media (prefers-color-scheme: dark) {
     :root {
         --background: #141414;
         --foreground: rgb(253, 249, 240);
     }
-}
+} */
 
 body {
     /* background: var(--background); */
@@ -29,6 +39,52 @@ p {
     font-size: 0.9rem;
 }
 
+/* Loading Section */
+
+.running-algorithm {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.dot {
+    width: 15px;
+    height: 15px;
+    margin: 0 6px;
+    background-color: #a1a1aa;
+    border-radius: 50%;
+    animation: bounce 1s infinite ease-in-out;
+}
+
+.dot:nth-child(2) {
+    animation-delay: 0.2s;
+}
+
+.dot:nth-child(3) {
+    animation-delay: 0.4s;
+}
+
+@keyframes bounce {
+    0%,
+    100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-10px);
+    }
+}
+
+/* End of Loading Section */
+
 .flex-center {
     @apply flex items-center justify-center;
+}
+
+.stock-card {
+    @apply h-full aspect-square flex-none rounded-full flex items-center justify-center border border-background;
+}
+
+.second-scene-text {
+    @apply absolute text-black font-poppins !text-[5rem] whitespace-nowrap;
 }
