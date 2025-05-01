@@ -210,110 +210,242 @@ export default function StartPage() {
                 },
                 0
             );
+        const mm = gsap.matchMedia();
 
-        firstAnimationTimeline
-            .to(
-                cards,
-                {
-                    y: -350,
-                    stagger: 0.1,
-                    duration: 0.5,
-                    ease: "power2.out",
-                },
-                0
-            )
+        mm.add("(min-width: 769px)", () => {
+            firstAnimationTimeline
+                .to(
+                    cards,
+                    {
+                        y: -350,
+                        stagger: 0.1,
+                        duration: 0.5,
+                        ease: "power2.out",
+                    },
+                    0
+                )
 
-            .to(
-                fadeOut,
-                {
-                    opacity: 0,
-                    duration: 0.3,
-                },
-                0
-            );
+                .to(
+                    fadeOut,
+                    {
+                        opacity: 0,
+                        duration: 0.3,
+                    },
+                    0
+                );
 
-        secondAnimationTimeline
-            .to(
-                cards,
-                {
-                    y: -250,
-                    width: "70px",
-                    height: "70px",
-                    duration: 0.7,
-                },
-                0
-            )
-            .to(mainSectionRef.current, {
-                backgroundColor: "var(--foreground)",
-            });
+            secondAnimationTimeline
+                .to(
+                    cards,
+                    {
+                        y: -250,
+                        width: "70px",
+                        height: "70px",
+                        duration: 0.7,
+                    },
+                    0
+                )
+                .to(mainSectionRef.current, {
+                    backgroundColor: "var(--foreground)",
+                });
 
-        thirdAnimationTimeline.to(
-            stockCardOneRef.current,
-            {
-                y: -350,
-            },
-            0
-        );
-        forthAnimationTimeline
-            .to(
+            thirdAnimationTimeline.to(
                 stockCardOneRef.current,
                 {
-                    x: "+=400",
+                    y: -350,
                 },
                 0
-            )
-            .to(
-                stockCardTwoRef.current,
-                {
-                    x: -150,
-                },
-                0
-            )
-            .to(
-                [
+            );
+            forthAnimationTimeline
+                .to(
+                    stockCardOneRef.current,
+                    {
+                        x: "+=400",
+                    },
+                    0
+                )
+                .to(
+                    stockCardTwoRef.current,
+                    {
+                        x: -150,
+                    },
+                    0
+                )
+                .to(
+                    [
+                        stockCardThreeRef.current,
+                        stockCardFourRef.current,
+                        stockCardFiveRef.current,
+                    ],
+                    {
+                        y: "+=100",
+                    },
+                    0
+                );
+
+            fifthAnimationTimeline
+                .to(
+                    [stockCardFourRef.current, stockCardFiveRef.current],
+                    {
+                        y: "+=100",
+                    },
+                    0
+                )
+                .to(
                     stockCardThreeRef.current,
+
+                    {
+                        x: "-=50",
+                    },
+                    0
+                )
+                .to(
+                    [stockCardFourRef.current, stockCardFiveRef.current],
+                    {
+                        x: "+=200",
+                    },
+                    1
+                );
+
+            sixthAnimationTimeline.from(
+                secondSceneElements,
+                {
+                    opacity: 0,
+                    stagger: 0.5,
+                    x: 50,
+                },
+                0
+            );
+        });
+
+        mm.add("(max-width: 768px)", () => {
+            firstAnimationTimeline
+                .to(
+                    cards,
+                    {
+                        y: 170,
+                        stagger: 0.1,
+                        duration: 0.5,
+                        ease: "power2.out",
+                    },
+                    0
+                )
+
+                .to(
+                    fadeOut,
+                    {
+                        opacity: 0,
+                        duration: 0.3,
+                    },
+                    0
+                );
+
+            secondAnimationTimeline
+                .to(
+                    cards,
+                    {
+                        y: 170,
+                        width: "50px",
+                        height: "50px",
+                        duration: 0.7,
+                    },
+                    0
+                )
+                .to(
+                    mainSectionRef.current,
+                    {
+                        backgroundColor: "var(--foreground)",
+                    },
+                    1
+                )
+                .to(
                     stockCardFourRef.current,
+                    {
+                        y: "-=54",
+                    },
+                    1
+                )
+                .to(
+                    stockCardTwoRef.current,
+                    {
+                        y: "+=54",
+                    },
+                    1
+                );
+
+            thirdAnimationTimeline
+                .to(
+                    stockCardFourRef.current,
+                    {
+                        x: "+=33",
+                    },
+                    0
+                )
+                .to(
+                    stockCardOneRef.current,
+                    {
+                        x: "+=33",
+                    },
+                    0
+                )
+                .to(
                     stockCardFiveRef.current,
-                ],
-                {
-                    y: "+=100",
-                },
-                0
-            );
+                    {
+                        x: "-=33",
+                    },
+                    0
+                )
+                .to(
+                    stockCardTwoRef.current,
+                    {
+                        x: "-=33",
+                    },
+                    0
+                );
+            // forthAnimationTimeline.to(
+            //     cards,
+            //     {
+            //         width: "40px",
+            //         height: "40px",
+            //         duration: 0.7,
+            //     },
+            //     0
+            // );
 
-        fifthAnimationTimeline
-            .to(
-                [stockCardFourRef.current, stockCardFiveRef.current],
-                {
-                    y: "+=100",
-                },
-                0
-            )
-            .to(
-                stockCardThreeRef.current,
+            // fifthAnimationTimeline
+            //     .to(
+            //         [stockCardFourRef.current, stockCardFiveRef.current],
+            //         {
+            //             y: "+=100",
+            //         },
+            //         0
+            //     )
+            //     .to(
+            //         stockCardThreeRef.current,
 
-                {
-                    x: "-=50",
-                },
-                0
-            )
-            .to(
-                [stockCardFourRef.current, stockCardFiveRef.current],
-                {
-                    x: "+=200",
-                },
-                1
-            );
+            //         {
+            //             x: "-=50",
+            //         },
+            //         0
+            //     )
+            //     .to(
+            //         [stockCardFourRef.current, stockCardFiveRef.current],
+            //         {
+            //             x: "+=200",
+            //         },
+            //         1
+            //     );
 
-        sixthAnimationTimeline.from(
-            secondSceneElements,
-            {
-                opacity: 0,
-                stagger: 0.5,
-                x: 50,
-            },
-            0
-        );
+            // sixthAnimationTimeline.from(
+            //     secondSceneElements,
+            //     {
+            //         opacity: 0,
+            //         stagger: 0.5,
+            //         x: 50,
+            //     },
+            //     0
+            // );
+        });
 
         seventhAnimationTimeline
             .from(
@@ -365,7 +497,8 @@ export default function StartPage() {
             .to(
                 lastSceneRef.current,
                 {
-                    display: "block",
+                    display: "flex",
+                    borderRadius: "0px",
                 },
                 0
             );
@@ -374,17 +507,17 @@ export default function StartPage() {
         <>
             <section
                 ref={mainSectionRef}
-                className="fixed top-0 left-0 right-0 bottom-0 bg-background">
+                className="fixed top-0 left-0 right-0 bottom-0 bg-background max-md:h-dvh max-md:flex max-md:flex-col-reverse">
                 <div
                     ref={titleContainerRef}
-                    className="h-2/3 flex items-center justify-end flex-col gap-12 pb-24 w-full">
+                    className="h-1/2 md:h-2/3 flex items-center justify-center md:justify-end flex-col-reverse md:flex-col gap-4 md:gap-12 md:pb-24 w-full">
                     <div
                         ref={mainTitleRef}
-                        className="font-poppins text-[8rem]">
-                        <div className="leading-28 text-center">
+                        className="font-poppins text-[3rem] md:text-[8rem]">
+                        <div className="md:leading-28 text-center">
                             Your Personal
                         </div>
-                        <div className="leading-28 text-center">
+                        <div className="md:leading-28 text-center">
                             Trading Hub
                         </div>
                     </div>
@@ -401,34 +534,42 @@ export default function StartPage() {
                 </div>
                 <div
                     ref={cardsContainerRef}
-                    className="h-1/3 flex px-4 py-2 justify-center w-full gap-2">
-                    <div ref={stockCardOneRef} className="stock-card bg-blue">
-                        <p
-                            ref={elThreeSecondSceneRef}
-                            className="second-scene-text -left-[660px] ">
-                            Your AI Trading
-                        </p>
-                        <RiMetaFill className="absolute inset-0 m-auto w-3/5 h-3/5 text-background" />
-                        <p
-                            ref={elOneSecondSceneRef}
-                            className="second-scene-text -right-[180px]">
-                            Hub
-                        </p>
+                    className="h-1/2 md:h-1/3 flex max-md:flex-col-reverse px-4 py-2 justify-center w-full gap-2">
+                    <div className="flex max-md:justify-center max-md:gap-4">
+                        <div
+                            ref={stockCardOneRef}
+                            className="stock-card bg-blue !rounded-[10%]">
+                            <p
+                                ref={elThreeSecondSceneRef}
+                                className="second-scene-text -left-[660px] ">
+                                Your AI Trading
+                            </p>
+                            <RiMetaFill className="absolute inset-0 m-auto w-3/5 h-3/5 text-background" />
+                            <p
+                                ref={elOneSecondSceneRef}
+                                className="second-scene-text -right-[180px]">
+                                Hub
+                            </p>
+                        </div>
+                        <div
+                            ref={stockCardTwoRef}
+                            className="stock-card bg-yellow">
+                            <p
+                                ref={elTwoSecondSceneRef}
+                                className="second-scene-text -left-[124px]">
+                                All
+                            </p>
+                            <IoLogoApple className="absolute inset-0 m-auto w-3/5 h-3/5 text-background" />
+                            <p
+                                ref={elFourSecondSceneRef}
+                                className="second-scene-text -right-[580px]">
+                                Trading Tools
+                            </p>
+                        </div>
                     </div>
-                    <div ref={stockCardTwoRef} className="stock-card bg-yellow">
-                        <p
-                            ref={elTwoSecondSceneRef}
-                            className="second-scene-text -left-[124px]">
-                            All
-                        </p>
-                        <IoLogoApple className="absolute inset-0 m-auto w-3/5 h-3/5 text-background" />
-                        <p
-                            ref={elFourSecondSceneRef}
-                            className="second-scene-text -right-[580px]">
-                            Trading Tools
-                        </p>
-                    </div>
-                    <div ref={stockCardThreeRef} className="relative h-full">
+                    <div
+                        ref={stockCardThreeRef}
+                        className="relative h-full max-md:hidden">
                         <svg
                             viewBox="0 0 95 83"
                             className="h-full "
@@ -453,22 +594,23 @@ export default function StartPage() {
                             Need To Win
                         </p>
                     </div>
+                    <div className="flex max-md:justify-center max-md:gap-4">
+                        <div
+                            ref={stockCardFourRef}
+                            className="stock-card bg-purple !rounded-[10%]">
+                            <p
+                                ref={elSixSecondSceneRef}
+                                className="second-scene-text -left-[646px]">
+                                You Next Trade
+                            </p>
 
-                    <div
-                        ref={stockCardFourRef}
-                        className="stock-card bg-purple">
-                        <p
-                            ref={elSixSecondSceneRef}
-                            className="second-scene-text -left-[646px]">
-                            You Next Trade
-                        </p>
-
-                        <RiNetflixFill className="absolute inset-0 m-auto w-3/5 h-3/5 text-background" />
-                    </div>
-                    <div
-                        ref={stockCardFiveRef}
-                        className="stock-card bg-orange">
-                        <IoLogoGoogle className="absolute inset-0 m-auto w-3/5 h-3/5 text-background" />
+                            <RiNetflixFill className="absolute inset-0 m-auto w-3/5 h-3/5 text-background" />
+                        </div>
+                        <div
+                            ref={stockCardFiveRef}
+                            className="stock-card bg-orange">
+                            <IoLogoGoogle className="absolute inset-0 m-auto w-3/5 h-3/5 text-background" />
+                        </div>
                     </div>
                 </div>
                 <div ref={thirdSceneRef} className="fixed inset-0">
@@ -481,10 +623,10 @@ export default function StartPage() {
                     <div
                         ref={elTwoThirdSceneRef}
                         className="w-[2000px] h-1/3 bg-yellow border border-background rounded-3xl translate-x-[2000px]"></div>
-                    <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-1/3">
+                    <div className="absolute top-0 md:top-1/2 left-0 md:left-1/2 md:-translate-x-1/2 md:-translate-y-1/2 md:w-1/3 px-6 md:px-0 pt-8 md:pt-0">
                         <p
                             ref={textThirdScene}
-                            className="text-white !text-[2rem] font-poppins flex gap-2 flex-wrap">
+                            className="text-white !text-[1.65rem] !md:text-[2rem] font-poppins flex gap-2 flex-wrap">
                             <Image
                                 src="/logo.png"
                                 alt="logo"
@@ -504,8 +646,8 @@ export default function StartPage() {
                     <div
                         ref={lastSceneRef}
                         className="absolute inset-0 bg-green w-full h-screen rounded-3xl hidden">
-                        <div className="h-full flex flex-col justify-center px-24 gap-2">
-                            <div className="bg-purple w-[300px] rounded-xl p-4 border border-black text-black leading-4 flex justify-between">
+                        <div className="h-full w-full md:w-1/2 flex flex-col justify-center px-6 md:px-24 gap-2">
+                            <div className="bg-purple w-full md:w-[300px] rounded-xl p-4 border border-black text-black leading-4 flex justify-between">
                                 <div>
                                     <h1>Trade Journal</h1>
                                     <h2 className="text-neutral-700 text-[.75rem]">
@@ -516,7 +658,7 @@ export default function StartPage() {
                                     <BiLinkExternal className="text-white" />
                                 </div>
                             </div>
-                            <div className="bg-orange w-[300px] rounded-xl p-4 border border-black text-black leading-4 flex justify-between">
+                            <div className="bg-orange w-full md:w-[300px] rounded-xl p-4 border border-black text-black leading-4 flex justify-between">
                                 <div>
                                     <h1>AI Investor</h1>
                                     <h2 className="text-neutral-700 text-[.75rem]">
@@ -527,7 +669,7 @@ export default function StartPage() {
                                     <BiLinkExternal className="text-white" />
                                 </div>
                             </div>
-                            <div className="bg-yellow w-[300px] rounded-xl p-4 border border-black text-black leading-4 flex justify-between">
+                            <div className="bg-yellow w-full md:w-[300px] rounded-xl p-4 border border-black text-black leading-4 flex justify-between">
                                 <div>
                                     <h1>AI Trader</h1>
                                     <h2 className="text-neutral-700 text-[.75rem]">
@@ -538,6 +680,14 @@ export default function StartPage() {
                                     <BiLinkExternal className="text-white" />
                                 </div>
                             </div>
+                        </div>
+                        <div className="w-1/2 aspect-square relative hidden md:block">
+                            <Image
+                                src="/test-2.png"
+                                alt="big-logo"
+                                fill
+                                className="object-contain"
+                            />
                         </div>
                     </div>
                 </div>

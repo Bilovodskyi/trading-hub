@@ -33,6 +33,7 @@ body {
     color: var(--foreground);
     font-family: Arial, Helvetica, sans-serif;
     font-weight: 600;
+    background-color: #141414;
 }
 
 p {
@@ -82,9 +83,9 @@ p {
 }
 
 .stock-card {
-    @apply h-full aspect-square flex-none rounded-full flex items-center justify-center border border-background;
+    @apply h-[160px] md:h-full aspect-square flex-none rounded-full flex items-center justify-center border border-background;
 }
 
 .second-scene-text {
-    @apply absolute text-black font-poppins !text-[5rem] whitespace-nowrap;
+    @apply absolute text-black font-poppins !text-[5rem] whitespace-nowrap hidden md:block;
 }
