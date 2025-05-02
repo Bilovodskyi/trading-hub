@@ -89,3 +89,7 @@ p {
 .second-scene-text {
     @apply absolute text-black font-poppins !text-[5rem] whitespace-nowrap hidden md:block;
 }
+
+.mobile-second-scene-text {
+    @apply absolute text-black font-poppins !text-[1.5rem] whitespace-nowrap block md:hidden;
+}

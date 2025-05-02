@@ -45,6 +45,15 @@ export default function StartPage() {
 
     const lastSceneRef = useRef<HTMLDivElement | null>(null);
 
+    const mobileElOneSecondSceneRef = useRef<HTMLDivElement | null>(null);
+    const mobileElTwoSecondSceneRef = useRef<HTMLDivElement | null>(null);
+    const mobileElThreeSecondSceneRef = useRef<HTMLDivElement | null>(null);
+    const mobileElFourSecondSceneRef = useRef<HTMLDivElement | null>(null);
+    const mobileElFiveSecondSceneRef = useRef<HTMLDivElement | null>(null);
+    const mobileElSixSecondSceneRef = useRef<HTMLDivElement | null>(null);
+    const mobileElSevenSecondSceneRef = useRef<HTMLDivElement | null>(null);
+    const mobileElEightSecondSceneRef = useRef<HTMLDivElement | null>(null);
+
     const viewportHeight = useViewportHeight();
     useGSAP(() => {
         if (
@@ -70,7 +79,15 @@ export default function StartPage() {
             !elThreeThirdSceneRef.current ||
             !thirdSceneRef.current ||
             !textThirdScene.current ||
-            !lastSceneRef.current
+            !lastSceneRef.current ||
+            !mobileElOneSecondSceneRef.current ||
+            !mobileElTwoSecondSceneRef.current ||
+            !mobileElThreeSecondSceneRef.current ||
+            !mobileElFourSecondSceneRef.current ||
+            !mobileElFiveSecondSceneRef.current ||
+            !mobileElSixSecondSceneRef.current ||
+            !mobileElSevenSecondSceneRef.current ||
+            !mobileElEightSecondSceneRef.current
         )
             return;
         const initialTimeline = gsap.timeline({
@@ -170,6 +187,17 @@ export default function StartPage() {
             elSevenSecondSceneRef.current,
         ];
 
+        const mobileSecondSceneElements = [
+            mobileElOneSecondSceneRef.current,
+            mobileElTwoSecondSceneRef.current,
+            mobileElThreeSecondSceneRef.current,
+            mobileElFourSecondSceneRef.current,
+            mobileElFiveSecondSceneRef.current,
+            mobileElSixSecondSceneRef.current,
+            mobileElSevenSecondSceneRef.current,
+            mobileElEightSecondSceneRef.current,
+        ];
+
         const thirdSceneElements = [
             elOneThirdSceneRef.current,
             elTwoThirdSceneRef.current,
@@ -179,6 +207,8 @@ export default function StartPage() {
         const fadeOut = [mainTitleRef.current, scrollToBottomButtonRef.current];
 
         const delays = [0.5, 0.3, 0.6, 0.4, 0.2];
+
+        gsap.set(mainSectionRef.current, { display: "flex" });
 
         initialTimeline
             .from(
@@ -402,49 +432,16 @@ export default function StartPage() {
                     },
                     0
                 );
-            // forthAnimationTimeline.to(
-            //     cards,
-            //     {
-            //         width: "40px",
-            //         height: "40px",
-            //         duration: 0.7,
-            //     },
-            //     0
-            // );
 
-            // fifthAnimationTimeline
-            //     .to(
-            //         [stockCardFourRef.current, stockCardFiveRef.current],
-            //         {
-            //             y: "+=100",
-            //         },
-            //         0
-            //     )
-            //     .to(
-            //         stockCardThreeRef.current,
-
-            //         {
-            //             x: "-=50",
-            //         },
-            //         0
-            //     )
-            //     .to(
-            //         [stockCardFourRef.current, stockCardFiveRef.current],
-            //         {
-            //             x: "+=200",
-            //         },
-            //         1
-            //     );
-
-            // sixthAnimationTimeline.from(
-            //     secondSceneElements,
-            //     {
-            //         opacity: 0,
-            //         stagger: 0.5,
-            //         x: 50,
-            //     },
-            //     0
-            // );
+            fifthAnimationTimeline.from(
+                mobileSecondSceneElements,
+                {
+                    opacity: 0,
+                    stagger: 0.5,
+                    x: 50,
+                },
+                0
+            );
         });
 
         seventhAnimationTimeline
@@ -503,11 +500,12 @@ export default function StartPage() {
                 0
             );
     });
+
     return (
         <>
             <section
                 ref={mainSectionRef}
-                className="fixed top-0 left-0 right-0 bottom-0 bg-background max-md:h-dvh max-md:flex max-md:flex-col-reverse">
+                className="fixed top-0 left-0 right-0 bottom-0 bg-background max-md:h-dvh flex-col-reverse md:flex-col hidden">
                 <div
                     ref={titleContainerRef}
                     className="h-1/2 md:h-2/3 flex items-center justify-center md:justify-end flex-col-reverse md:flex-col gap-4 md:gap-12 md:pb-24 w-full">
@@ -535,7 +533,7 @@ export default function StartPage() {
                 <div
                     ref={cardsContainerRef}
                     className="h-1/2 md:h-1/3 flex max-md:flex-col-reverse px-4 py-2 justify-center w-full gap-2">
-                    <div className="flex max-md:justify-center max-md:gap-4">
+                    <div className="flex max-md:justify-center gap-4 md:gap-2">
                         <div
                             ref={stockCardOneRef}
                             className="stock-card bg-blue !rounded-[10%]">
@@ -544,11 +542,21 @@ export default function StartPage() {
                                 className="second-scene-text -left-[660px] ">
                                 Your AI Trading
                             </p>
+                            <p
+                                ref={mobileElFiveSecondSceneRef}
+                                className="mobile-second-scene-text right-[56px]">
+                                You Might
+                            </p>
                             <RiMetaFill className="absolute inset-0 m-auto w-3/5 h-3/5 text-background" />
                             <p
                                 ref={elOneSecondSceneRef}
                                 className="second-scene-text -right-[180px]">
                                 Hub
+                            </p>
+                            <p
+                                ref={mobileElSixSecondSceneRef}
+                                className="mobile-second-scene-text left-[56px]">
+                                Need to Win
                             </p>
                         </div>
                         <div
@@ -559,11 +567,21 @@ export default function StartPage() {
                                 className="second-scene-text -left-[124px]">
                                 All
                             </p>
+                            <p
+                                ref={mobileElSevenSecondSceneRef}
+                                className="mobile-second-scene-text right-[56px]">
+                                Your
+                            </p>
                             <IoLogoApple className="absolute inset-0 m-auto w-3/5 h-3/5 text-background" />
                             <p
                                 ref={elFourSecondSceneRef}
                                 className="second-scene-text -right-[580px]">
                                 Trading Tools
+                            </p>
+                            <p
+                                ref={mobileElEightSecondSceneRef}
+                                className="mobile-second-scene-text left-[56px]">
+                                Next Trade
                             </p>
                         </div>
                     </div>
@@ -594,7 +612,7 @@ export default function StartPage() {
                             Need To Win
                         </p>
                     </div>
-                    <div className="flex max-md:justify-center max-md:gap-4">
+                    <div className="flex max-md:justify-center gap-4 md:gap-2">
                         <div
                             ref={stockCardFourRef}
                             className="stock-card bg-purple !rounded-[10%]">
@@ -603,13 +621,32 @@ export default function StartPage() {
                                 className="second-scene-text -left-[646px]">
                                 You Next Trade
                             </p>
-
+                            <p
+                                ref={mobileElOneSecondSceneRef}
+                                className="mobile-second-scene-text right-[56px]">
+                                Your AI
+                            </p>
                             <RiNetflixFill className="absolute inset-0 m-auto w-3/5 h-3/5 text-background" />
+                            <p
+                                ref={mobileElTwoSecondSceneRef}
+                                className="mobile-second-scene-text left-[56px]">
+                                Trading Hub
+                            </p>
                         </div>
                         <div
                             ref={stockCardFiveRef}
                             className="stock-card bg-orange">
+                            <p
+                                ref={mobileElThreeSecondSceneRef}
+                                className="mobile-second-scene-text right-[56px]">
+                                All trading
+                            </p>
                             <IoLogoGoogle className="absolute inset-0 m-auto w-3/5 h-3/5 text-background" />
+                            <p
+                                ref={mobileElFourSecondSceneRef}
+                                className="mobile-second-scene-text left-[56px]">
+                                Tools
+                            </p>
                         </div>
                     </div>
                 </div>
