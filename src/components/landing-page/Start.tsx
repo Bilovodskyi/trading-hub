@@ -533,8 +533,8 @@ export default function StartPage() {
                 </div>
                 <div
                     ref={cardsContainerRef}
-                    className="h-1/2 md:h-1/3 flex max-md:flex-col-reverse px-4 py-2 justify-center w-full gap-2">
-                    <div className="flex max-md:justify-center gap-4 md:gap-2">
+                    className="h-1/2 md:h-1/3 flex flex-nowrap max-md:flex-col-reverse px-4 py-2 justify-center w-full gap-2">
+                    <div className="flex md:flex-1 max-md:justify-center justify-end gap-4 md:gap-2">
                         <div
                             ref={stockCardOneRef}
                             className="stock-card bg-blue !rounded-[10%]">
@@ -613,7 +613,7 @@ export default function StartPage() {
                             Need To Win
                         </p>
                     </div>
-                    <div className="flex max-md:justify-center gap-4 md:gap-2">
+                    <div className="flex md:flex-1 max-md:justify-center gap-4 md:gap-2">
                         <div
                             ref={stockCardFourRef}
                             className="stock-card bg-purple !rounded-[10%]">
