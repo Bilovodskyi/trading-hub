@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 import React from "react";
 
 export default function Navbar() {
@@ -8,11 +9,22 @@ export default function Navbar() {
                 <Image src="/logo.png" alt="logo" width={42} height={42} />
                 <p>Trading Hub</p>
                 <div className="pl-4 flex items-center gap-6 text-[.8rem]">
-                    <button>About</button>
-                    <button>Contact</button>
-                    <button className="border border-[#c7ff69] py-2 px-3 rounded-full">
+                    <Link
+                        href="https://bilovodskyi-portfolio.netlify.app"
+                        target="_blank">
+                        Portfolio
+                    </Link>
+                    <Link
+                        href="https://www.linkedin.com/in/bohdan-bilovodskyi-0437241b7/"
+                        target="_blank">
+                        LinkedIn
+                    </Link>
+                    <Link
+                        href="https://github.com/Bilovodskyi"
+                        target="_blank"
+                        className="border border-[#c7ff69] py-2 px-3 rounded-full hover:bg-[#c7ff69] transition-colors duration-150 cursor-pointer hover:text-black">
                         GitHub
-                    </button>
+                    </Link>
                 </div>
             </div>
         </div>

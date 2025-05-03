@@ -13,6 +13,7 @@ import { fadeInWords } from "@/lib/data";
 import Image from "next/image";
 import { useViewportHeight } from "@/hooks/useViewPortHeight";
 import { BiLinkExternal } from "react-icons/bi";
+import Link from "next/link";
 
 gsap.registerPlugin(useGSAP, ScrollTrigger);
 
@@ -684,7 +685,10 @@ export default function StartPage() {
                         ref={lastSceneRef}
                         className="absolute inset-0 bg-green w-full h-screen rounded-3xl hidden">
                         <div className="h-full w-full md:w-1/2 flex flex-col justify-center px-6 md:px-24 gap-2">
-                            <div className="bg-purple w-full md:w-[300px] rounded-xl p-4 border border-black text-black leading-4 flex justify-between">
+                            <Link
+                                href="https://www.tradejournal.one/"
+                                target="_blank"
+                                className="bg-purple w-full md:w-[300px] rounded-xl p-4 border border-black text-black leading-4 flex justify-between cursor-pointer">
                                 <div>
                                     <h1>Trade Journal</h1>
                                     <h2 className="text-neutral-700 text-[.75rem]">
@@ -694,8 +698,11 @@ export default function StartPage() {
                                 <div className="rounded-full bg-black w-[34px] h-[34px] flex-center">
                                     <BiLinkExternal className="text-white" />
                                 </div>
-                            </div>
-                            <div className="bg-orange w-full md:w-[300px] rounded-xl p-4 border border-black text-black leading-4 flex justify-between">
+                            </Link>
+                            <Link
+                                href="https://www.investsquid.com/"
+                                target="_blank"
+                                className="bg-orange w-full md:w-[300px] rounded-xl p-4 border border-black text-black leading-4 flex justify-between cursor-pointer">
                                 <div>
                                     <h1>AI Investor</h1>
                                     <h2 className="text-neutral-700 text-[.75rem]">
@@ -705,7 +712,7 @@ export default function StartPage() {
                                 <div className="rounded-full bg-black w-[34px] h-[34px] flex-center">
                                     <BiLinkExternal className="text-white" />
                                 </div>
-                            </div>
+                            </Link>
                             <div className="bg-yellow w-full md:w-[300px] rounded-xl p-4 border border-black text-black leading-4 flex justify-between">
                                 <div>
                                     <h1>AI Trader</h1>
